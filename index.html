@@ -76,7 +76,8 @@ footer{padding:20px 0 28px;color:var(--muted);font-size:.9rem;text-align:center}
 .rm{background:none;border:0;color:var(--muted);cursor:pointer;font:inherit;text-decoration:underline;justify-self:end}
 .tot{display:flex;justify-content:space-between;font-size:1.15rem;font-weight:700;padding:14px 0}
 .drawer .btn{width:100%;text-align:center}
-.drawer .btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.drawer .btn:disabled{opacity:.45;cursor:not-allowed}
+.ok{text-align:center;padding:24px 0}.ok .tick{width:56px;height:56px;border-radius:50%;background:#12a594;color:#fff;font-size:1.8rem;display:grid;place-items:center;margin:0 auto 12px}.ok h3{margin:0 0 6px}.ok p{color:var(--muted);margin:4px 0}.ok ul{list-style:none;padding:0;margin:14px 0;text-align:right}.ok li{padding:6px 0;border-bottom:1px solid var(--line)}
 .qty button:focus-visible,.x:focus-visible,.rm:focus-visible{outline:3px solid var(--warm);outline-offset:2px}
 @media (max-width:720px){.hero{grid-template-columns:1fr}.stack{height:220px}}
 </style>
@@ -114,7 +115,7 @@ footer{padding:20px 0 28px;color:var(--muted);font-size:.9rem;text-align:center}
   <div class="why">
     <div><h3>تسليم فوري</h3><p>الكود يوصلك مباشرة بعد تأكيد الدفع.</p></div>
     <div><h3>دفع آمن</h3><p>طرق دفع محلية معروفة وبدون مشاركة بياناتك.</p></div>
-    <div><h3>دعم عبر واتساب</h3><p>أي مشكلة في الكود نحلها معك بنفس اليوم.</p></div>
+    <div><h3>دعم سريع</h3><p>أي مشكلة في الكود نحلها معك بنفس اليوم.</p></div>
   </div>
 </section>
 
@@ -123,15 +124,15 @@ footer{padding:20px 0 28px;color:var(--muted);font-size:.9rem;text-align:center}
   <p class="sub">ثلاث خطوات فقط.</p>
   <ol class="steps">
     <li><b>اختر المنتج</b>تصفح القائمة واضغط "اطلب".</li>
-    <li><b>أرسل الطلب</b>يفتح لك واتساب برسالة جاهزة، أرسلها لنا.</li>
+    <li><b>أكّد الطلب</b>افتح السلة وراجع منتجاتك واضغط "تأكيد الطلب".</li>
     <li><b>ادفع واستلم</b>بعد الدفع يصلك الكود أو بيانات الاشتراك.</li>
   </ol>
 </section>
 
 <div class="cta">
-  <h2>عندك سؤال قبل الطلب؟</h2>
-  <p>راسلنا ونرد عليك بأسرع وقت.</p>
-  <a class="btn" id="contact" href="#">تواصل عبر واتساب</a>
+  <h2>جاهز تطلب؟</h2>
+  <p>اختر منتجاتك وأكّد الطلب من السلة.</p>
+  <a class="btn" href="#products">تصفح المنتجات</a>
 </div>
 </main>
 
@@ -143,7 +144,7 @@ footer{padding:20px 0 28px;color:var(--muted);font-size:.9rem;text-align:center}
   <div class="dh"><h2>سلتك</h2><button class="x" id="close" aria-label="إغلاق">×</button></div>
   <div id="lines"></div>
   <div class="tot"><span>الإجمالي</span><span id="total">0 ر.س</span></div>
-  <a class="btn" id="checkout" target="_blank" rel="noopener" href="#" aria-disabled="true">أرسل الطلب عبر واتساب</a>
+  <button class="btn" id="checkout" disabled>تأكيد الطلب</button>
 </aside>
 <script>
 var PHONE="966500000000"; // غيّر الرقم لرقم واتساب متجرك
@@ -174,8 +175,6 @@ cats.forEach(function(c,idx){
   chips.appendChild(b);
 });
 render("الكل");
-document.getElementById("contact").href=link("السلام عليكم، عندي استفسار");
-document.getElementById("contact").target="_blank";
 
 var cart={};
 try{cart=JSON.parse(localStorage.getItem("cart")||"{}")||{}}catch(e){cart={}}
@@ -190,7 +189,7 @@ function renderCart(){
   $("lines").innerHTML=h||'<div class="empty">السلة فاضية، أضف منتج من القائمة.</div>';
   $("cnt").textContent=n;$("total").textContent=t+" ر.س";
   msg+="الإجمالي: "+t+" ر.س";
-  var c=$("checkout");c.href=n?link(msg):"#";c.setAttribute("aria-disabled",n?"false":"true");
+  $("checkout").disabled=!n;
   save();
 }
 grid.addEventListener("click",function(e){
@@ -209,6 +208,15 @@ $("lines").addEventListener("click",function(e){
 $("open").onclick=function(){toggle(true)};
 $("close").onclick=$("ov").onclick=function(){toggle(false)};
 document.addEventListener("keydown",function(e){if(e.key==="Escape")toggle(false)});
+$("checkout").onclick=function(){
+  var keys=Object.keys(cart).filter(function(k){return items[k]&&cart[k]>0});
+  if(!keys.length)return;
+  var t=0,li="";
+  keys.forEach(function(k){t+=cart[k]*items[k].p;li+="<li>"+items[k].n+" × "+cart[k]+" — "+(cart[k]*items[k].p)+" ر.س</li>"});
+  var no="#"+Math.floor(10000+Math.random()*89999);
+  cart={};renderCart();
+  $("lines").innerHTML='<div class="ok"><div class="tick">✓</div><h3>تم استلام طلبك</h3><p>رقم الطلب '+no+'</p><ul>'+li+'</ul><b>الإجمالي: '+t+' ر.س</b><p>بيوصلك الكود أو بيانات الاشتراك بعد تأكيد الدفع.</p></div>';
+};
 renderCart();
 </script>
 </body>
