@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>متجر رقمي | بطاقات واشتراكات وشحن ألعاب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f5fb;--surface:#fff;--ink:#141a3d;--muted:#5d6385;--line:#dfe2f0;--accent:#5b3df5;--accent-ink:#fff;--warm:#ffb938;--warm-ink:#3a2600;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1330;--surface:#181e45;--ink:#eef0ff;--muted:#a4aad0;--line:#2a3160;--accent:#8c78ff;--accent-ink:#0f1330}}
+:root[data-theme="dark"]{--bg:#0f1330;--surface:#181e45;--ink:#eef0ff;--muted:#a4aad0;--line:#2a3160;--accent:#8c78ff;--accent-ink:#0f1330}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Arabic",Tahoma,Arial,sans-serif;line-height:1.7}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+.logo{font-weight:700;font-size:1.25rem;text-decoration:none}
+.logo span{color:var(--accent)}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink);padding:10px 22px;border-radius:10px;font-weight:700;text-decoration:none;border:0;font:inherit;font-weight:700;cursor:pointer}
+.btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn:focus-visible,.chip:focus-visible{outline:3px solid var(--warm);outline-offset:2px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;padding:36px 0 56px}
+h1{font-size:clamp(2rem,5.5vw,3.4rem);line-height:1.25;margin:0 0 14px}
+.hero p{color:var(--muted);font-size:1.1rem;max-width:34em;margin:0 0 24px}
+.hero .row{display:flex;gap:12px;flex-wrap:wrap}
+.stack{position:relative;height:260px}
+.stack i{position:absolute;width:210px;height:130px;border-radius:16px;box-shadow:0 8px 24px rgba(20,26,61,.18);display:flex;align-items:flex-end;padding:14px;font-style:normal;font-weight:700;color:#fff}
+.stack i:nth-child(1){background:#5b3df5;top:10px;left:10px;transform:rotate(-8deg)}
+.stack i:nth-child(2){background:#e5484d;top:70px;left:70px;transform:rotate(4deg)}
+.stack i:nth-child(3){background:#12a594;top:130px;left:20px;transform:rotate(-2deg)}
+h2{font-size:1.7rem;margin:0 0 6px}
+.sub{color:var(--muted);margin:0 0 20px}
+section{padding:28px 0}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.chip{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);padding:6px 16px;border-radius:99px;font:inherit;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.thumb{height:92px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:1.25rem}
+.card .body{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.card h3{margin:0;font-size:1rem}
+.card small{color:var(--muted)}
+.price{margin-top:auto;display:flex;align-items:center;justify-content:space-between;padding-top:8px}
+.price b{font-size:1.1rem}
+.card .btn{padding:6px 14px;font-size:.9rem}
+.why{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.why div{border-inline-start:4px solid var(--warm);padding:4px 14px}
+.why h3{margin:0 0 4px;font-size:1.05rem}
+.why p{margin:0;color:var(--muted)}
+ol.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;list-style:none;padding:0;margin:0;counter-reset:s}
+ol.steps li{counter-increment:s;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+ol.steps li::before{content:counter(s);display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--warm);color:var(--warm-ink);font-weight:700;margin-bottom:8px}
+ol.steps b{display:block}
+.cta{background:var(--ink);color:var(--bg);border-radius:18px;padding:28px;text-align:center;margin:28px 0}
+.cta p{margin:0 0 16px;opacity:.85}
+.cta .btn{background:var(--warm);color:var(--warm-ink)}
+footer{padding:20px 0 28px;color:var(--muted);font-size:.9rem;text-align:center}
+.badge{background:var(--warm);color:var(--warm-ink);border-radius:99px;padding:0 9px;margin-inline-start:6px;font-size:.85rem}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;z-index:9}
+.ov.on{display:block}
+.drawer{position:fixed;top:0;bottom:0;left:0;width:min(400px,100%);background:var(--surface);color:var(--ink);z-index:10;transform:translateX(-102%);transition:transform .25s;display:flex;flex-direction:column;padding:calc(16px + env(safe-area-inset-top,0px)) 18px calc(16px + env(safe-area-inset-bottom,0px))}
+.drawer.on{transform:none}
+.dh{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.dh h2{margin:0;font-size:1.3rem}
+.x{background:none;border:0;color:var(--ink);font-size:1.6rem;cursor:pointer;line-height:1}
+#lines{flex:1;overflow-y:auto}
+.empty{color:var(--muted);text-align:center;padding:40px 0}
+.ln{display:grid;grid-template-columns:1fr auto;gap:4px 10px;padding:12px 0;border-bottom:1px solid var(--line)}
+.ln b{font-size:.95rem}
+.ln .pr{font-weight:700;text-align:left}
+.qty{display:flex;align-items:center;gap:8px}
+.qty button{width:28px;height:28px;border-radius:8px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);font:inherit;cursor:pointer}
+.rm{background:none;border:0;color:var(--muted);cursor:pointer;font:inherit;text-decoration:underline;justify-self:end}
+.tot{display:flex;justify-content:space-between;font-size:1.15rem;font-weight:700;padding:14px 0}
+.drawer .btn{width:100%;text-align:center}
+.drawer .btn[aria-disabled="true"]{opacity:.45;pointer-events:none}
+.qty button:focus-visible,.x:focus-visible,.rm:focus-visible{outline:3px solid var(--warm);outline-offset:2px}
+@media (max-width:720px){.hero{grid-template-columns:1fr}.stack{height:220px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="logo" href="#">متجر<span>رقمي</span></a>
+  <button class="btn alt" id="open" aria-label="فتح السلة">السلة<span class="badge" id="cnt">0</span></button>
+</header>
+
+<main>
+<div class="hero">
+  <div>
+    <h1>بطاقاتك واشتراكاتك الرقمية توصلك خلال دقائق</h1>
+    <p>شحن ألعاب، بطاقات هدايا، اشتراكات وأدوات رقمية. تدفع وتستلم الكود مباشرة بدون انتظار.</p>
+    <div class="row">
+      <a class="btn" href="#products">تصفح المنتجات</a>
+      <a class="btn alt" href="#steps">كيف أشتري؟</a>
+    </div>
+  </div>
+  <div class="stack" aria-hidden="true"><i>بطاقة هدايا</i><i>شحن ألعاب</i><i>اشتراك</i></div>
+</div>
+
+<section id="products">
+  <h2>المنتجات</h2>
+  <p class="sub">الأسعار والمنتجات هنا أمثلة، عدّلها حسب متجرك.</p>
+  <div class="chips" id="chips" role="group" aria-label="التصنيفات"></div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section>
+  <h2>ليش تشتري منا؟</h2>
+  <p class="sub">ثلاثة أشياء تهمك قبل ما تدفع.</p>
+  <div class="why">
+    <div><h3>تسليم فوري</h3><p>الكود يوصلك مباشرة بعد تأكيد الدفع.</p></div>
+    <div><h3>دفع آمن</h3><p>طرق دفع محلية معروفة وبدون مشاركة بياناتك.</p></div>
+    <div><h3>دعم عبر واتساب</h3><p>أي مشكلة في الكود نحلها معك بنفس اليوم.</p></div>
+  </div>
+</section>
+
+<section id="steps">
+  <h2>كيف تطلب؟</h2>
+  <p class="sub">ثلاث خطوات فقط.</p>
+  <ol class="steps">
+    <li><b>اختر المنتج</b>تصفح القائمة واضغط "اطلب".</li>
+    <li><b>أرسل الطلب</b>يفتح لك واتساب برسالة جاهزة، أرسلها لنا.</li>
+    <li><b>ادفع واستلم</b>بعد الدفع يصلك الكود أو بيانات الاشتراك.</li>
+  </ol>
+</section>
+
+<div class="cta">
+  <h2>عندك سؤال قبل الطلب؟</h2>
+  <p>راسلنا ونرد عليك بأسرع وقت.</p>
+  <a class="btn" id="contact" href="#">تواصل عبر واتساب</a>
+</div>
+</main>
+
+<footer>© متجر رقمي. جميع الحقوق محفوظة.</footer>
+</div>
+
+<div class="ov" id="ov"></div>
+<aside class="drawer" id="drawer" aria-label="سلة المشتريات" aria-hidden="true">
+  <div class="dh"><h2>سلتك</h2><button class="x" id="close" aria-label="إغلاق">×</button></div>
+  <div id="lines"></div>
+  <div class="tot"><span>الإجمالي</span><span id="total">0 ر.س</span></div>
+  <a class="btn" id="checkout" target="_blank" rel="noopener" href="#" aria-disabled="true">أرسل الطلب عبر واتساب</a>
+</aside>
+<script>
+var PHONE="966500000000"; // غيّر الرقم لرقم واتساب متجرك
+var items=[
+{n:"بطاقة آيتونز 100 ر.س",c:"بطاقات هدايا",p:105,col:"#e5484d",d:"رصيد فوري للحساب السعودي"},
+{n:"بطاقة قوقل بلاي 50 ر.س",c:"بطاقات هدايا",p:54,col:"#12a594",d:"للتطبيقات والألعاب"},
+{n:"بطاقة بلايستيشن 100 ر.س",c:"بطاقات هدايا",p:106,col:"#2f6feb",d:"لمتجر PlayStation"},
+{n:"شحن ببجي 660 UC",c:"شحن ألعاب",p:35,col:"#e08a00",d:"الشحن بالـ ID فقط"},
+{n:"شحن فورتنايت V-Bucks",c:"شحن ألعاب",p:45,col:"#7a4cf0",d:"تسليم خلال دقائق"},
+{n:"نتفليكس شهر",c:"اشتراكات",p:39,col:"#c2262e",d:"شاشة خاصة بك"},
+{n:"سبوتيفاي بريميوم شهر",c:"اشتراكات",p:22,col:"#1a9a4a",d:"على حسابك الشخصي"},
+{n:"حزمة قوالب سوشال ميديا",c:"أدوات رقمية",p:49,col:"#5b3df5",d:"ملفات قابلة للتعديل"}
+];
+var cats=["الكل"].concat(items.map(function(i){return i.c}).filter(function(v,i,a){return a.indexOf(v)===i}));
+var chips=document.getElementById("chips"),grid=document.getElementById("grid");
+function link(t){return "https://wa.me/"+PHONE+"?text="+encodeURIComponent(t)}
+function render(cat){
+  grid.innerHTML="";
+  items.filter(function(i){return cat==="الكل"||i.c===cat}).forEach(function(i){
+    var a=document.createElement("article");a.className="card";
+    a.innerHTML='<div class="thumb" style="background:'+i.col+'">'+i.c+'</div><div class="body"><h3>'+i.n+'</h3><small>'+i.d+'</small><div class="price"><b>'+i.p+' ر.س</b><button class="btn" data-add="'+items.indexOf(i)+'">أضف للسلة</button></div></div>';
+    grid.appendChild(a);
+  });
+}
+cats.forEach(function(c,idx){
+  var b=document.createElement("button");b.className="chip";b.textContent=c;b.setAttribute("aria-pressed",idx===0);
+  b.onclick=function(){Array.prototype.forEach.call(chips.children,function(x){x.setAttribute("aria-pressed","false")});b.setAttribute("aria-pressed","true");render(c)};
+  chips.appendChild(b);
+});
+render("الكل");
+document.getElementById("contact").href=link("السلام عليكم، عندي استفسار");
+document.getElementById("contact").target="_blank";
+
+var cart={};
+try{cart=JSON.parse(localStorage.getItem("cart")||"{}")||{}}catch(e){cart={}}
+var $=function(id){return document.getElementById(id)};
+function save(){try{localStorage.setItem("cart",JSON.stringify(cart))}catch(e){}}
+function toggle(on){$("drawer").classList.toggle("on",on);$("ov").classList.toggle("on",on);$("drawer").setAttribute("aria-hidden",!on)}
+function renderCart(){
+  var keys=Object.keys(cart).filter(function(k){return items[k]&&cart[k]>0});
+  var n=0,t=0,h="",msg="طلب جديد:\n";
+  keys.forEach(function(k){var i=items[k],q=cart[k];n+=q;t+=q*i.p;msg+="- "+i.n+" × "+q+" = "+(q*i.p)+" ر.س\n";
+    h+='<div class="ln"><b>'+i.n+'</b><span class="pr">'+(q*i.p)+' ر.س</span><div class="qty"><button data-m="'+k+'" aria-label="إنقاص">−</button><span>'+q+'</span><button data-p="'+k+'" aria-label="زيادة">+</button></div><button class="rm" data-r="'+k+'">حذف</button></div>'});
+  $("lines").innerHTML=h||'<div class="empty">السلة فاضية، أضف منتج من القائمة.</div>';
+  $("cnt").textContent=n;$("total").textContent=t+" ر.س";
+  msg+="الإجمالي: "+t+" ر.س";
+  var c=$("checkout");c.href=n?link(msg):"#";c.setAttribute("aria-disabled",n?"false":"true");
+  save();
+}
+grid.addEventListener("click",function(e){
+  var b=e.target.closest("[data-add]");if(!b)return;
+  var k=b.getAttribute("data-add");cart[k]=(cart[k]||0)+1;renderCart();
+  b.textContent="تمت الإضافة ✓";setTimeout(function(){b.textContent="أضف للسلة"},900);
+});
+$("lines").addEventListener("click",function(e){
+  var t=e.target,k;
+  if(k=t.getAttribute("data-p"))cart[k]++;
+  else if(k=t.getAttribute("data-m")){cart[k]--;if(cart[k]<1)delete cart[k]}
+  else if(k=t.getAttribute("data-r"))delete cart[k];
+  else return;
+  renderCart();
+});
+$("open").onclick=function(){toggle(true)};
+$("close").onclick=$("ov").onclick=function(){toggle(false)};
+document.addEventListener("keydown",function(e){if(e.key==="Escape")toggle(false)});
+renderCart();
+</script>
+</body>
+</html>
